@@ -1,2 +1,2 @@
-# transversal-dimension-jump
+# Transversal dimension jump for product qLDPC codes
 This repo contains the code for simulations in the paper "Transversal dimension jump for product qLDPC codes"
