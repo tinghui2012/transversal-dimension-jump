@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Large data / secrets (don’t commit)
+data/*.csv
+data/*.parquet
+data/raw/
+*.env
+
