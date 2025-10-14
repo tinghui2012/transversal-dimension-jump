@@ -14,6 +14,11 @@ Includes:
 ```text
 .
 ├── README.md
+├── notebooks
+│   ├── 0_code_generation.ipynb
+│   ├── 1_memory_experiments.ipynb
+│   ├── 2_teleportation_experiments.ipynb
+│   └── 3_ccz_error_detection_simulations.ipynb
 ├── data
 │   ├── gamma_0_dict.pkl
 │   ├── gamma_1_dict.pkl
@@ -23,13 +28,6 @@ Includes:
 │   ├── hx_dict_3d.pkl
 │   ├── hz_dict_2d.pkl
 │   └── hz_dict_3d.pkl
-├── notebooks
-│   ├── 0_code_generation.ipynb
-│   ├── 1_memory_experiments.ipynb
-│   ├── 2_teleportation_experiments.ipynb
-│   └── 3_ccz_error_detection_simulations.ipynb
-├── requirements_py312.txt
-├── requirements_py37.txt
 └── src
     ├── BP_codes_sage.py
     ├── BP_cup_prod.py
@@ -44,6 +42,8 @@ Includes:
     ├── SingleStageDecoding.py
     ├── TeleportationCircuit.py
     └── utilities.py
+├── requirements_py312.txt
+├── requirements_py37.txt
 ```
 ## Requirements
 
