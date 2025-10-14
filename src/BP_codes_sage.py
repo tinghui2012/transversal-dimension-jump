@@ -3,11 +3,8 @@ from bposd.css import css_code
 from sage.all import *
 import sys
 sys.path.append('./src/')
-from QuantumExanderCodesGene import GetClassicalCodeParams
-from DistanceEst import DistanceEst_BPOSD
 gap('LoadPackage("QDistRnd");')
 from scipy import sparse
-import scipy.io as sio
 import re
 import copy
 
@@ -145,7 +142,8 @@ class BalancedProductCode:
 
         Hx_lifted = lift_matrix_over_group_algebra(self.Hx, self.G.list())
         Hz_lifted = lift_matrix_over_group_algebra(self.Hz_T, self.G.list()).T
-        self.Mz_lifted = lift_matrix_over_group_algebra(self.Mz, self.G.list())
+        if len(base_matrices) == 3:
+            self.Mz_lifted = lift_matrix_over_group_algebra(self.Mz, self.G.list())
         self.code = css_code(hx=Hx_lifted, hz=Hz_lifted)
 
     def _identity(self, n):
@@ -225,7 +223,7 @@ class BalancedProductCode:
         return Hx_mat, Hz_mat_T, Mz_mat
 
 
-def DistanceEst_Gap(eval_code, trials):
+def DistanceEst_Gap(eval_code, trials=30):
     hx = copy.deepcopy(eval_code.hx.astype('int').toarray())
     hz = copy.deepcopy(eval_code.hz.astype('int').toarray())
     

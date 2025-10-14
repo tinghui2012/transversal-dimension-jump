@@ -9,36 +9,16 @@ import itertools
 
 import sys
 sys.path.append("./src/")
-from CircuitScheduling import ColorationCircuit, ColorProductCircuit
+from CircuitScheduling import get_stab_meas_schedule
 from ErrorPlugin import *
 import random
 
-from Decoders_SpaceTime import ST_BP_Decoder_Circuit_Class, ST_BPOSD_Decoder_Circuit_Class
-from Simulators_SpaceTime import CodeSimulator_Circuit_SpaceTime
+# from Decoders_SpaceTime import ST_BP_Decoder_Circuit_Class, ST_BPOSD_Decoder_Circuit_Class
+# from Simulators_SpaceTime import CodeSimulator_Circuit_SpaceTime
 sys.setrecursionlimit(10000)
 
 MEASUREMENT_INDICES = {}  # store absolute indices of measurements in the circuit, starting from 0
 CURRENT_MEASUREMENT_INDEX = 0  # total number of measurements in the circuit so far
-
-
-def pauli_strings(n):
-    paulis = ['I', 'X', 'Y', 'Z']
-    strings = [''.join(p) for p in itertools.product(paulis, repeat=n)]
-    return [s for s in strings if s != 'I' * n]
-
-def get_stab_meas_schedule(H):
-    r, n = H.shape
-    if r > n:
-        sch_flipped = ColorationCircuit(H.T)
-        sch = []
-        for stage_flipped in sch_flipped:
-            stage_dict_unflipped = {}
-            for k, v in stage_flipped.items():
-                stage_dict_unflipped[v] = k
-            sch.append(stage_dict_unflipped)
-    else:
-        sch = ColorationCircuit(H)
-    return sch
 
 # single (half) round of one type of stab measurements
 def single_Z_measurement_QEC(code, 
@@ -313,269 +293,12 @@ def d_rounds_QEC_XZ(code,
     
     return circuit_stab_meas_rep
 
-def build_three_block_QEC_memory_circuit_with_CCZ(code, d, circuit_error_params, p, CCZ_reps, P_CCZ_mat):
-    # 1. prep logical |+> on 3 blocks of code
-    # 2. initial round of X measurements on all 3 blocks
-    # 3. initial round of Z measurements on all 3 blocks
-    # 4. d-1 XZ QEC rounds on all 3 blocks
-    # 5. CCZ noise
-    # 6. final readout + obtain measurement result
-    # 7. put layers together, add CX error
-
-    global CURRENT_MEASUREMENT_INDEX
-    global MEASUREMENT_INDICES
-    scheduling_Z = get_stab_meas_schedule(code.hz)
-    scheduling_X = get_stab_meas_schedule(code.hx)
-
-    # set noise model
-    error_params = {"p_i": circuit_error_params['p_i']*p, 
-                    "p_state_p": circuit_error_params['p_state_p']*p, 
-                    "p_m": circuit_error_params['p_m']*p, 
-                    "p_CX":circuit_error_params['p_CX']*p, 
-                    "p_idling_gate": circuit_error_params['p_idling_gate']*p,
-                    "p_CCZ":circuit_error_params['p_CCZ']
-                    }
-    hz = code.hz
-    hx = code.hx
-    lz = code.lz
-    lx = code.lx
-
-    n = code.N
-    num_Z_checks = np.shape(hz)[0]
-    num_X_checks = np.shape(hx)[0]
-
-    data_indices_b1 = list(np.arange(0, n))
-    Z_ancilla_indices_b1 = list(np.arange(data_indices_b1[-1]+1,
-                                            data_indices_b1[-1]+num_Z_checks+1))
-    X_ancilla_indices_b1 = list(np.arange(Z_ancilla_indices_b1[-1]+1,
-                                          Z_ancilla_indices_b1[-1]+num_X_checks+1))
-    data_indices_b2 = list(np.arange(X_ancilla_indices_b1[-1]+1, 
-                                     X_ancilla_indices_b1[-1]+n+1))
-    Z_ancilla_indices_b2 = list(np.arange(data_indices_b2[-1]+1,
-                                            data_indices_b2[-1]+num_Z_checks+1))
-    X_ancilla_indices_b2 = list(np.arange(Z_ancilla_indices_b2[-1]+1,
-                                          Z_ancilla_indices_b2[-1]+num_X_checks+1))
-    data_indices_b3 = list(np.arange(X_ancilla_indices_b2[-1]+1, 
-                                     X_ancilla_indices_b2[-1]+n+1))
-    Z_ancilla_indices_b3 = list(np.arange(data_indices_b3[-1]+1,
-                                            data_indices_b3[-1]+num_Z_checks+1))
-    X_ancilla_indices_b3 = list(np.arange(Z_ancilla_indices_b3[-1]+1,
-                                          Z_ancilla_indices_b3[-1]+num_X_checks+1))
-    data_indices_dict = {1: data_indices_b1,
-                         2: data_indices_b2,
-                         3: data_indices_b3}
-
-    # 1. prep logical |+> on 3 blocks of code
-    init_3b_plus_circuit = stim.Circuit()
-    init_3b_plus_circuit.append("RX", data_indices_b1+data_indices_b2+data_indices_b3)
-    init_3b_plus_circuit.append("R", Z_ancilla_indices_b1
-                                +X_ancilla_indices_b1
-                                +Z_ancilla_indices_b2
-                                +X_ancilla_indices_b2
-                                +Z_ancilla_indices_b3
-                                +X_ancilla_indices_b3)
-    
-    # 2-4. d rounds of QEC on all three blocks
-    d_rounds_QEC_XZ_circuit_b1 = d_rounds_QEC_XZ(code,
-                                                d,
-                                                3,
-                                                data_indices_b1,
-                                                Z_ancilla_indices_b1,
-                                                X_ancilla_indices_b1,
-                                                scheduling_X, 
-                                                scheduling_Z, 
-                                                error_params)
-    
-    d_rounds_QEC_XZ_circuit_b2 = d_rounds_QEC_XZ(code,
-                                                d,
-                                                3,
-                                                data_indices_b2,
-                                                Z_ancilla_indices_b2,
-                                                X_ancilla_indices_b2,
-                                                scheduling_X, 
-                                                scheduling_Z, 
-                                                error_params)
-                                                
-    d_rounds_QEC_XZ_circuit_b3 = d_rounds_QEC_XZ(code,
-                                                d,
-                                                3,
-                                                data_indices_b3,
-                                                Z_ancilla_indices_b3,
-                                                X_ancilla_indices_b3,
-                                                scheduling_X, 
-                                                scheduling_Z, 
-                                                error_params)
-    
-    # 5. apply "CCZ" by weight-5 all pauli Z errors on each index, for each code block. this assumes depth-2 CCZ
-    ccz_pauli_circuit = stim.Circuit()
-
-    # block 1:
-    # for each i in block 1, loop through all CCZs, pick the two with (1, _, _) = 1
-    for i in range(n):
-        matching_j1j2 = []
-        matching_k1k2 = []
-        for j in range(n):
-            for k in range(n):
-                if P_CCZ_mat[i][j][k] == 1:
-                    matching_j1j2.append(j)
-                    matching_k1k2.append(k)
-        if len(matching_j1j2) != 2 or len(matching_k1k2) != 2:
-            print(i, "not depth-2 block 1", matching_j1j2, matching_k1k2)
-            # continue
-        matching_i_circuit_index = [data_indices_b1[i]] # should be the same as itself since data_indices_b1 starts from 0
-        matching_j1j2_circuit_indices = [data_indices_b2[j_prime] for j_prime in matching_j1j2]
-        matching_k1k2_circuit_indices = [data_indices_b3[k_prime] for k_prime in matching_k1k2]
-        weight_5_error_indices = matching_i_circuit_index + matching_j1j2_circuit_indices + matching_k1k2_circuit_indices
-        ccz_pauli_circuit.append("CORRELATED_ERROR", [f"Z{ei}" for ei in weight_5_error_indices], (error_params['p_CCZ']))
-    ccz_pauli_circuit.append("TICK")
-
-    # block 2:
-    # loop through all CCZs, pick the two with (_, 1, _) = 1
-    for j in range(n):
-        matching_i1i2 = []
-        matching_k1k2 = []
-        for i in range(n):
-            for k in range(n):
-                if P_CCZ_mat[i][j][k] == 1:
-                    matching_i1i2.append(i)
-                    matching_k1k2.append(k)
-        if len(matching_i1i2) != 2 or len(matching_k1k2) != 2:
-            print(j, "not depth-2 block 2", matching_i1i2, matching_k1k2)
-            # continue
-        matching_j_circuit_index = [data_indices_b2[j]]
-        matching_i1i2_circuit_indices = [data_indices_b1[i_prime] for i_prime in matching_i1i2]
-        matching_k1k2_circuit_indices = [data_indices_b3[k_prime] for k_prime in matching_k1k2]
-        weight_5_error_indices = matching_j_circuit_index + matching_i1i2_circuit_indices + matching_k1k2_circuit_indices
-        ccz_pauli_circuit.append("CORRELATED_ERROR", [f"Z{ei}" for ei in weight_5_error_indices], (error_params['p_CCZ']))
-    ccz_pauli_circuit.append("TICK")
-
-    # block 3:
-    # for each k in block 3, loop through all CCZs, pick the two with (_, _, 1) = 1
-    for k in range(n):
-        matching_i1i2 = []
-        matching_j1j2 = []
-        for i in range(n):
-            for j in range(n):
-                if P_CCZ_mat[i][j][k] == 1:
-                    matching_i1i2.append(i)
-                    matching_j1j2.append(j)
-        if len(matching_i1i2) != 2 or len(matching_j1j2) != 2:
-            print(k, "not depth-2 block 3", matching_i1i2, matching_j1j2)
-            # continue
-        matching_k_circuit_index = [data_indices_b3[k]]
-        matching_i1i2_circuit_indices = [data_indices_b1[i_prime] for i_prime in matching_i1i2]
-        matching_j1j2_circuit_indices = [data_indices_b2[j_prime] for j_prime in matching_j1j2]
-        weight_5_error_indices = matching_k_circuit_index + matching_i1i2_circuit_indices + matching_j1j2_circuit_indices
-        ccz_pauli_circuit.append("CORRELATED_ERROR", [f"Z{ei}" for ei in weight_5_error_indices], (error_params['p_CCZ']))
-    ccz_pauli_circuit.append("TICK")
-
-    # 6. final readout
-    # 4. measure X on each of the three blocks + set up independent DETECTORS
-    measure_X_circuit = stim.Circuit()
-    num_data_measurements = len(data_indices_b1)
-    measure_X_circuit.append("DEPOLARIZE1", data_indices_b1+data_indices_b2+data_indices_b3, (error_params['p_m'])) # add measurement error
-    measure_X_circuit.append("MX", data_indices_b1)
-    CURRENT_MEASUREMENT_INDEX += num_data_measurements
-    MEASUREMENT_INDICES['final_measure_X_b1'] = np.arange(CURRENT_MEASUREMENT_INDEX - num_data_measurements,
-                                                                        CURRENT_MEASUREMENT_INDEX)
-    measure_X_circuit.append("MX", data_indices_b2)
-    CURRENT_MEASUREMENT_INDEX += num_data_measurements
-    MEASUREMENT_INDICES['final_measure_X_b2'] = np.arange(CURRENT_MEASUREMENT_INDEX - num_data_measurements,
-                                                                        CURRENT_MEASUREMENT_INDEX)
-    measure_X_circuit.append("MX", data_indices_b3)
-    CURRENT_MEASUREMENT_INDEX += num_data_measurements
-    MEASUREMENT_INDICES['final_measure_X_b3'] = np.arange(CURRENT_MEASUREMENT_INDEX - num_data_measurements,
-                                                                        CURRENT_MEASUREMENT_INDEX)
-    
-    lookback_indices_X_b1 = MEASUREMENT_INDICES['final_measure_X_b1'] - CURRENT_MEASUREMENT_INDEX
-    lookback_indices_X_b2 = MEASUREMENT_INDICES['final_measure_X_b2'] - CURRENT_MEASUREMENT_INDEX
-    lookback_indices_X_b3 = MEASUREMENT_INDICES['final_measure_X_b3'] - CURRENT_MEASUREMENT_INDEX
-    
-    # obtain the syndromes
-    for i in range(len(X_ancilla_indices_b1)):
-        supported_data_indices_b1 = list(np.where(hx[X_ancilla_indices_b1[i]-X_ancilla_indices_b1[0],:]==1)[0])
-        supported_data_indices_b2 = list(np.where(hx[X_ancilla_indices_b2[i]-X_ancilla_indices_b2[0],:]==1)[0])
-        supported_data_indices_b3 = list(np.where(hx[X_ancilla_indices_b3[i]-X_ancilla_indices_b3[0],:]==1)[0])
-
-        matching_lookback_indices_b1 = []
-        for j in range(len(supported_data_indices_b1)):
-            matching_lookback_index_b1 = lookback_indices_X_b1[0] + supported_data_indices_b1[j]
-            matching_lookback_indices_b1.append(matching_lookback_index_b1)
-        
-        matching_lookback_indices_b2 = []
-        for j in range(len(supported_data_indices_b2)):
-            matching_lookback_index_b2 = lookback_indices_X_b2[0] + supported_data_indices_b2[j]
-            matching_lookback_indices_b2.append(matching_lookback_index_b2)
-        
-        matching_lookback_indices_b3 = []
-        for j in range(len(supported_data_indices_b3)):
-            matching_lookback_index_b3 = lookback_indices_X_b3[0] + supported_data_indices_b3[j]
-            matching_lookback_indices_b3.append(matching_lookback_index_b3)
-        # matching_lookback_indices_b1 = list(map(int, matching_lookback_indices_b1))
-        measure_X_circuit.append("DETECTOR", [stim.target_rec(matching_lookback_indices_b1[k]) for k in range(len(matching_lookback_indices_b1))], (0))
-        measure_X_circuit.append("DETECTOR", [stim.target_rec(matching_lookback_indices_b2[k]) for k in range(len(matching_lookback_indices_b2))], (0))
-        measure_X_circuit.append("DETECTOR", [stim.target_rec(matching_lookback_indices_b3[k]) for k in range(len(matching_lookback_indices_b3))], (0))
-
-        measure_X_circuit.append("TICK")
-
-    # 5. final readout on all 3 code blocks
-    final_readout_circuit = stim.Circuit()
-    # block 1 observables:
-    for i in range(len(lx)):
-        x_support = np.where(lx[i])[0]
-        x_targets_b1 = [
-            stim.target_rec(lookback_indices_X_b1[0] + q)
-            for q in x_support
-        ]
-        final_readout_circuit.append("OBSERVABLE_INCLUDE", x_targets_b1, i)
-    for i in range(len(lx)):
-        x_support = np.where(lx[i])[0]
-        x_targets_b2 = [
-            stim.target_rec(lookback_indices_X_b2[0] + q)
-            for q in x_support
-        ]
-        final_readout_circuit.append("OBSERVABLE_INCLUDE", x_targets_b2, i+3)
-    for i in range(len(lx)):
-        x_support = np.where(lx[i])[0]
-        x_targets_b3 = [
-            stim.target_rec(lookback_indices_X_b3[0] + q)
-            for q in x_support
-        ]
-        final_readout_circuit.append("OBSERVABLE_INCLUDE", x_targets_b3, i+6)
-    # for i in range(len(lx)):
-    #     x_support = np.where(lx[i])[0]
-    #     x_targets_b1 = [
-    #         stim.target_rec(lookback_indices_X_b1[0] + q)
-    #         for q in x_support
-    #     ]
-    #     x_targets_b2 = [
-    #         stim.target_rec(lookback_indices_X_b2[0] + q)
-    #         for q in x_support
-    #     ]
-    #     x_targets_b3 = [
-    #         stim.target_rec(lookback_indices_X_b3[0] + q)
-    #         for q in x_support
-    #     ]
-    #     final_readout_circuit.append("OBSERVABLE_INCLUDE", x_targets_b1+x_targets_b2+x_targets_b3, i)
-
-    d_rounds_QEC_XZ_circuit_b123 = d_rounds_QEC_XZ_circuit_b1 + d_rounds_QEC_XZ_circuit_b2 + d_rounds_QEC_XZ_circuit_b3
-    full_circuit = init_3b_plus_circuit + \
-                    d_rounds_QEC_XZ_circuit_b123 + \
-                    ccz_pauli_circuit + \
-                    measure_X_circuit + \
-                    final_readout_circuit
-    full_circuit = AddCXError(full_circuit, 'DEPOLARIZE2(%f)' % error_params["p_CX"])
-    return full_circuit
-
-
-# set up 3 blocks of 3D codes, initialized to plus states, apply 2 sets of 3-qubit depolarizing noise (to emulate CCZ) 
 def build_three_block_circuit_with_CCZ(code, circuit_error_params, p, CCZ_repeat, P_CCZ_mat):
-
-    # 1. prep logical |+> on 3 blocks of code
-    # 2. perform 1 round of ONLY S_Z measurement on each block (no correction)
-    # 3. measure X on all three blocks + set up independent DETECTORS
-    # 4. apply pauli depolarizing noise
-    # 5. final X measurements + readout on 3 code blocks
+    # 1. prep logical |+> on three 3D code blocks
+    # 2. perform one round of Z measurement on each block
+    # 3. apply CCZ noise
+    # 4. measure X on all three blocks
+    # 5. final X measurements + readout on all three code blocks
 
     global CURRENT_MEASUREMENT_INDEX
     global MEASUREMENT_INDICES
@@ -642,7 +365,7 @@ def build_three_block_circuit_with_CCZ(code, circuit_error_params, p, CCZ_repeat
                                    scheduling_Z,
                                    error_params)
 
-    # 3. apply "CCZ" by weight-5 all pauli Z errors on each index, for each code block. this assumes depth-2 CCZ
+    # 3. apply "CCZ" by weight-5-all-pauli-Z errors on each data qubit index for each code block. this assumes depth-2 CCZ
     ccz_pauli_circuit = stim.Circuit()
 
     # block 1:
@@ -657,7 +380,6 @@ def build_three_block_circuit_with_CCZ(code, circuit_error_params, p, CCZ_repeat
                     matching_k1k2.append(k)
         if len(matching_j1j2) != 2 or len(matching_k1k2) != 2:
             print(i, "not depth-2 block 1", matching_j1j2, matching_k1k2)
-            # continue
         matching_i_circuit_index = [data_indices_b1[i]] # should be the same as itself since data_indices_b1 starts from 0
         matching_j1j2_circuit_indices = [data_indices_b2[j_prime] for j_prime in matching_j1j2]
         matching_k1k2_circuit_indices = [data_indices_b3[k_prime] for k_prime in matching_k1k2]
@@ -677,7 +399,6 @@ def build_three_block_circuit_with_CCZ(code, circuit_error_params, p, CCZ_repeat
                     matching_k1k2.append(k)
         if len(matching_i1i2) != 2 or len(matching_k1k2) != 2:
             print(j, "not depth-2 block 2", matching_i1i2, matching_k1k2)
-            # continue
         matching_j_circuit_index = [data_indices_b2[j]]
         matching_i1i2_circuit_indices = [data_indices_b1[i_prime] for i_prime in matching_i1i2]
         matching_k1k2_circuit_indices = [data_indices_b3[k_prime] for k_prime in matching_k1k2]
@@ -697,7 +418,6 @@ def build_three_block_circuit_with_CCZ(code, circuit_error_params, p, CCZ_repeat
                     matching_j1j2.append(j)
         if len(matching_i1i2) != 2 or len(matching_j1j2) != 2:
             print(k, "not depth-2 block 3", matching_i1i2, matching_j1j2)
-            # continue
         matching_k_circuit_index = [data_indices_b3[k]]
         matching_i1i2_circuit_indices = [data_indices_b1[i_prime] for i_prime in matching_i1i2]
         matching_j1j2_circuit_indices = [data_indices_b2[j_prime] for j_prime in matching_j1j2]
@@ -746,7 +466,6 @@ def build_three_block_circuit_with_CCZ(code, circuit_error_params, p, CCZ_repeat
         for j in range(len(supported_data_indices_b3)):
             matching_lookback_index_b3 = lookback_indices_X_b3[0] + supported_data_indices_b3[j]
             matching_lookback_indices_b3.append(matching_lookback_index_b3)
-        # matching_lookback_indices_b1 = list(map(int, matching_lookback_indices_b1))
         measure_X_circuit.append("DETECTOR", [stim.target_rec(matching_lookback_indices_b1[k]) for k in range(len(matching_lookback_indices_b1))], (0))
         measure_X_circuit.append("DETECTOR", [stim.target_rec(matching_lookback_indices_b2[k]) for k in range(len(matching_lookback_indices_b2))], (0))
         measure_X_circuit.append("DETECTOR", [stim.target_rec(matching_lookback_indices_b3[k]) for k in range(len(matching_lookback_indices_b3))], (0))
@@ -763,6 +482,7 @@ def build_three_block_circuit_with_CCZ(code, circuit_error_params, p, CCZ_repeat
             for q in x_support
         ]
         final_readout_circuit.append("OBSERVABLE_INCLUDE", x_targets_b1, i)
+    # block 2 observables:
     for i in range(len(lx)):
         x_support = np.where(lx[i])[0]
         x_targets_b2 = [
@@ -770,6 +490,7 @@ def build_three_block_circuit_with_CCZ(code, circuit_error_params, p, CCZ_repeat
             for q in x_support
         ]
         final_readout_circuit.append("OBSERVABLE_INCLUDE", x_targets_b2, i+3)
+    # block 3 observables:
     for i in range(len(lx)):
         x_support = np.where(lx[i])[0]
         x_targets_b3 = [
@@ -777,171 +498,10 @@ def build_three_block_circuit_with_CCZ(code, circuit_error_params, p, CCZ_repeat
             for q in x_support
         ]
         final_readout_circuit.append("OBSERVABLE_INCLUDE", x_targets_b3, i+6)
-    # for i in range(len(lx)):
-    #     x_support = np.where(lx[i])[0]
-    #     x_targets_b1 = [
-    #         stim.target_rec(lookback_indices_X_b1[0] + q)
-    #         for q in x_support
-    #     ]
-    #     x_targets_b2 = [
-    #         stim.target_rec(lookback_indices_X_b2[0] + q)
-    #         for q in x_support
-    #     ]
-    #     x_targets_b3 = [
-    #         stim.target_rec(lookback_indices_X_b3[0] + q)
-    #         for q in x_support
-    #     ]
-    #     final_readout_circuit.append("OBSERVABLE_INCLUDE", x_targets_b1+x_targets_b2+x_targets_b3, i)
 
     full_circuit = init_3b_plus_circuit + \
                     stab_meas_Z_circuit + \
                     ccz_pauli_circuit + \
-                    measure_X_circuit + \
-                    final_readout_circuit
-    full_circuit = AddCXError(full_circuit, 'DEPOLARIZE2(%f)' % error_params["p_CX"])
-    return full_circuit
-
-
-# set up 3 blocks of 3D codes, initialized to plus states
-def build_three_block_circuit_no_CCZ(code, circuit_error_params, p):
-    # 1. prep logical |+> on 3 blocks of code
-    # 2. perform 1 round of ONLY S_Z measurement on each block (no correction)
-    # 3. measure X on all three blocks + set up independent DETECTORS
-    # 4. final readout on 3D code from X measurements
-
-    global CURRENT_MEASUREMENT_INDEX
-    global MEASUREMENT_INDICES
-
-    scheduling_Z = get_stab_meas_schedule(code.hz)
-    # scheduling_X = get_stab_meas_schedule(code.hx)
-
-    # set noise model
-    error_params = {"p_i": circuit_error_params['p_i']*p, 
-                    "p_state_p": circuit_error_params['p_state_p']*p, 
-                    "p_m": circuit_error_params['p_m']*p, 
-                    "p_CX":circuit_error_params['p_CX']*p, 
-                    "p_idling_gate": circuit_error_params['p_idling_gate']*p
-                    }
-    hz = code.hz
-    hx = code.hx
-    lz = code.lz
-    lx = code.lx
-
-    n = code.N
-    num_Z_checks = np.shape(hz)[0]
-    num_X_checks = np.shape(hx)[0]
-
-    data_indices_b1 = list(np.arange(0, n))
-    Z_ancilla_indices_b1 = list(np.arange(data_indices_b1[-1]+1,
-                                            data_indices_b1[-1]+num_Z_checks+1))
-    X_ancilla_indices_b1 = list(np.arange(Z_ancilla_indices_b1[-1]+1,
-                                          Z_ancilla_indices_b1[-1]+num_X_checks+1))
-    data_indices_b2 = list(np.arange(X_ancilla_indices_b1[-1]+1, 
-                                     X_ancilla_indices_b1[-1]+n+1))
-    Z_ancilla_indices_b2 = list(np.arange(data_indices_b2[-1]+1,
-                                            data_indices_b2[-1]+num_Z_checks+1))
-    X_ancilla_indices_b2 = list(np.arange(Z_ancilla_indices_b2[-1]+1,
-                                          Z_ancilla_indices_b2[-1]+num_X_checks+1))
-    data_indices_b3 = list(np.arange(X_ancilla_indices_b2[-1]+1, 
-                                     X_ancilla_indices_b2[-1]+n+1))
-    Z_ancilla_indices_b3 = list(np.arange(data_indices_b3[-1]+1,
-                                            data_indices_b3[-1]+num_Z_checks+1))
-    X_ancilla_indices_b3 = list(np.arange(Z_ancilla_indices_b3[-1]+1,
-                                          Z_ancilla_indices_b3[-1]+num_X_checks+1))
-
-    # 1. prep logical |+> on 3 blocks of code
-    init_3b_plus_circuit = stim.Circuit()
-    init_3b_plus_circuit.append("RX", data_indices_b1+data_indices_b2+data_indices_b3)
-    init_3b_plus_circuit.append("R", Z_ancilla_indices_b1
-                                +X_ancilla_indices_b1
-                                +Z_ancilla_indices_b2
-                                +X_ancilla_indices_b2
-                                +Z_ancilla_indices_b3
-                                +X_ancilla_indices_b3)
-    
-    # 2. perform 1 round of ONLY S_Z measurement on each block (no correction)
-    stab_meas_Z_circuit = single_Z_measurement_QEC(code, 
-                                   data_indices_b1,
-                                   data_indices_b2,
-                                   data_indices_b3,
-                                   Z_ancilla_indices_b1,
-                                   Z_ancilla_indices_b2,
-                                   Z_ancilla_indices_b3,
-                                   scheduling_Z,
-                                   error_params)
-
-    # 3. measure X on each of the three blocks + set up independent DETECTORS
-    measure_X_circuit = stim.Circuit()
-    num_data_measurements = len(data_indices_b1)
-    measure_X_circuit.append("DEPOLARIZE1", data_indices_b1+data_indices_b2+data_indices_b3, (error_params['p_m'])) # add measurement error
-    measure_X_circuit.append("MX", data_indices_b1)
-    CURRENT_MEASUREMENT_INDEX += num_data_measurements
-    MEASUREMENT_INDICES['final_measure_X_b1'] = np.arange(CURRENT_MEASUREMENT_INDEX - num_data_measurements,
-                                                                        CURRENT_MEASUREMENT_INDEX)
-    measure_X_circuit.append("MX", data_indices_b2)
-    CURRENT_MEASUREMENT_INDEX += num_data_measurements
-    MEASUREMENT_INDICES['final_measure_X_b2'] = np.arange(CURRENT_MEASUREMENT_INDEX - num_data_measurements,
-                                                                        CURRENT_MEASUREMENT_INDEX)
-    measure_X_circuit.append("MX", data_indices_b3)
-    CURRENT_MEASUREMENT_INDEX += num_data_measurements
-    MEASUREMENT_INDICES['final_measure_X_b3'] = np.arange(CURRENT_MEASUREMENT_INDEX - num_data_measurements,
-                                                                        CURRENT_MEASUREMENT_INDEX)
-    
-    lookback_indices_X_b1 = MEASUREMENT_INDICES['final_measure_X_b1'] - CURRENT_MEASUREMENT_INDEX
-    lookback_indices_X_b2 = MEASUREMENT_INDICES['final_measure_X_b2'] - CURRENT_MEASUREMENT_INDEX
-    lookback_indices_X_b3 = MEASUREMENT_INDICES['final_measure_X_b3'] - CURRENT_MEASUREMENT_INDEX
-    
-    # obtain the syndromes
-    for i in range(len(X_ancilla_indices_b1)):
-        supported_data_indices_b1 = list(np.where(hx[X_ancilla_indices_b1[i]-X_ancilla_indices_b1[0],:]==1)[0])
-        supported_data_indices_b2 = list(np.where(hx[X_ancilla_indices_b2[i]-X_ancilla_indices_b2[0],:]==1)[0])
-        supported_data_indices_b3 = list(np.where(hx[X_ancilla_indices_b3[i]-X_ancilla_indices_b3[0],:]==1)[0])
-
-        matching_lookback_indices_b1 = []
-        for j in range(len(supported_data_indices_b1)):
-            matching_lookback_index_b1 = lookback_indices_X_b1[0] + supported_data_indices_b1[j]
-            matching_lookback_indices_b1.append(matching_lookback_index_b1)
-        
-        matching_lookback_indices_b2 = []
-        for j in range(len(supported_data_indices_b2)):
-            matching_lookback_index_b2 = lookback_indices_X_b2[0] + supported_data_indices_b2[j]
-            matching_lookback_indices_b2.append(matching_lookback_index_b2)
-        
-        matching_lookback_indices_b3 = []
-        for j in range(len(supported_data_indices_b3)):
-            matching_lookback_index_b3 = lookback_indices_X_b3[0] + supported_data_indices_b3[j]
-            matching_lookback_indices_b3.append(matching_lookback_index_b3)
-        # matching_lookback_indices_b1 = list(map(int, matching_lookback_indices_b1))
-        measure_X_circuit.append("DETECTOR", [stim.target_rec(matching_lookback_indices_b1[k]) for k in range(len(matching_lookback_indices_b1))], (0))
-        measure_X_circuit.append("DETECTOR", [stim.target_rec(matching_lookback_indices_b2[k]) for k in range(len(matching_lookback_indices_b2))], (0))
-        measure_X_circuit.append("DETECTOR", [stim.target_rec(matching_lookback_indices_b3[k]) for k in range(len(matching_lookback_indices_b3))], (0))
-
-        measure_X_circuit.append("TICK")
-
-    # 4. final X measurements + final readout on all 3 code blocks
-    final_readout_circuit = stim.Circuit()
-    for i in range(len(lx)):
-        x_support = np.where(lx[i])[0]
-        # block 1
-        # block 2
-        # block 3
-        # actually, lookback_indices_after_X_3D should have indices for all 3 blocks
-        x_targets_b1 = [
-            stim.target_rec(lookback_indices_X_b1[0] + q)
-            for q in x_support
-        ]
-        x_targets_b2 = [
-            stim.target_rec(lookback_indices_X_b2[0] + q)
-            for q in x_support
-        ]
-        x_targets_b3 = [
-            stim.target_rec(lookback_indices_X_b3[0] + q)
-            for q in x_support
-        ]
-        final_readout_circuit.append("OBSERVABLE_INCLUDE", x_targets_b1+x_targets_b2+x_targets_b3, i)
-
-    full_circuit = init_3b_plus_circuit + \
-                    stab_meas_Z_circuit + \
                     measure_X_circuit + \
                     final_readout_circuit
     full_circuit = AddCXError(full_circuit, 'DEPOLARIZE2(%f)' % error_params["p_CX"])

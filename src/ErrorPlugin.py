@@ -6,7 +6,6 @@ import sinter
 from typing import *
 import re
 
-
 ## CX gate errors
 def AddCXError(circuit:stim.Circuit, error_instruction:str) -> stim.Circuit:
     circuit_str = str(circuit)
@@ -40,7 +39,6 @@ def AddCZError(circuit:stim.Circuit, error_instruction:str) -> stim.Circuit:
     
     modified_circuit = stim.Circuit(circuit_str)
     return modified_circuit
-
 
 ## Add single-qubit error before each round
 def AddSingleQubitErrorBeforeRound(circuit:stim.Circuit, error_instruction:str, target_qubit_indices:list = []) -> stim.Circuit:

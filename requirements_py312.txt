@@ -1,0 +1,211 @@
+alabaster @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/alabaster-0.7.16-py3-none-any.whl#sha256=b46733c07dce03ae4e150330b975c75737fa60f0a7c591b6c8bf4928a28e2c92
+ansiterm==1.1
+anyio==4.6.2.post1
+appdirs @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/appdirs-1.4.4-py2.py3-none-any.whl#sha256=a841dacd6b99318a741b166adb07e19ee71a274450e68237b4650ca1055ab128
+appnope==0.1.4
+argon2-cffi==23.1.0
+argon2-cffi-bindings==21.2.0
+arrow==1.3.0
+asttokens==3.0.0
+async-lru==2.0.4
+attrs==24.2.0
+babel==2.16.0
+beautifulsoup4==4.12.3
+beliefmatching==0.2.0
+beniget @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/beniget-0.4.1-py3-none-any.whl#sha256=f81c26d66e1b0fe600a8dec5eb0bc48384d20c0cd7140919abca911b82355802
+bleach==6.2.0
+bposd==2.1
+build @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/build-1.2.1-py3-none-any.whl#sha256=75e10f767a433d9a86e50d83f418e83efc18ede923ee5ff7df93b6cb0306c5d4
+cachetools @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/cachetools-5.3.3-py3-none-any.whl#sha256=0abad1021d3f8325b2fc1d2e9c8b9c9d57b04c3932657a72465447332c24d945
+calver @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/calver-2022.6.26-py3-none-any.whl#sha256=a1d7fcdd67797afc52ee36ffb8c8adf6643173864306547bfd1380cbce6310a0
+certifi==2024.8.30
+cffi==1.17.1
+chardet @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/chardet-5.2.0-py3-none-any.whl#sha256=e1cf59446890a00105fe7b7912492ea04b6e6f06d4b742b2c788469e34c82970
+charset-normalizer==3.4.0
+cocoserver==1.0.9
+colorama @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/colorama-0.4.6-py2.py3-none-any.whl#sha256=4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6
+comm==0.2.2
+contourpy @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/contourpy-1.1.1-cp312-cp312-macosx_11_0_arm64.whl#sha256=7d40faa8292666816ec7a925dd59d1f4480050471964f0bc2560eb69cb27c583
+conway-polynomials @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/conway_polynomials-0.10-py3-none-any.whl#sha256=a354b4ac0a9985da75e2ac6ec6d7de2902396eff48913eeed86a962486171c28
+cppy @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/cppy-1.2.1-py3-none-any.whl#sha256=c5b5eac3d3f42593a07d35275b0bc27f447b76b9ad8f27c62e3cfa286dc1988a
+cvxopt @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/cvxopt-1.3.2-cp312-cp312-macosx_11_0_arm64.whl#sha256=7778b60523e1571acd8aa75a109d79a8fce70bfe6348a608cbb1d8badf6645a3
+cycler @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/cycler-0.11.0-py3-none-any.whl#sha256=af3d5b6c4e2cc4be312a85244841c3188502bbd713573fd08e7d00a5150d50ba
+cypari2 @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/cypari2-2.2.0-cp312-cp312-macosx_11_0_arm64.whl#sha256=dc83721ff25e5e6222bcabf35981fe66dfb20fc50755427246ee1c38d52655a1
+cysignals @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/cysignals-1.11.4-cp312-cp312-macosx_11_0_arm64.whl#sha256=04bd9099ded01ad5fcceedacd6d3a0966ca14bd0b9d94ffc4bc76a59cc644ab1
+Cython @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/Cython-3.0.11-cp312-cp312-macosx_11_0_arm64.whl#sha256=7e2c713b2481d4de90868d77ec08c95abeaa6eb01e6950929901136461681793
+debugpy==1.8.9
+decorator==5.1.1
+defusedxml==0.7.1
+distlib @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/distlib-0.3.8-py2.py3-none-any.whl#sha256=034db59a0b96f8ca18035f36290806a9a6e6bd9d1ff91e45a7f172eb17e51784
+docutils @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/docutils-0.21.2-py3-none-any.whl#sha256=dafca5b9e384f0e419294eb4d2ff9fa826435bf15f15b7bd45723e8ad76811b2
+editables @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/editables-0.5-py3-none-any.whl#sha256=61e5ffa82629e0d8bfe09bc44a07db3c1ab8ed1ce78a6980732870f19b5e7d4c
+entrypoints @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/entrypoints-0.4-py3-none-any.whl#sha256=ff64239c63d2f4929c7007b9f967830efe07d41daef7dac030857dc2d8f1c371
+exceptiongroup @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/exceptiongroup-1.2.2-py3-none-any.whl#sha256=3111b9d131c238bec2f8f516e123e14ba243563fb135d3fe885990585aa7795b
+execnet @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/execnet-2.1.1-py3-none-any.whl#sha256=26dee51f1b80cebd6d0ca8e74dd8745419761d3bef34163928cbebbdc4749fdc
+executing==2.1.0
+fastjsonschema==2.21.1
+filelock @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/filelock-3.14.0-py3-none-any.whl#sha256=43339835842f110ca7ae60f1e1c160714c5a6afd15a2873419ab185334975c0f
+flit_core @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/flit_core-3.9.0-py3-none-any.whl#sha256=7aada352fb0c7f5538c4fafeddf314d3a6a92ee8e2b1de70482329e42de70301
+fonttools @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/fonttools-4.42.1-cp312-cp312-macosx_11_0_arm64.whl#sha256=1e351887619ca105539bb69473b59c1871c97e73c5bbe9dfcf27bd9459a321a1
+fpylll @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/fpylll-0.6.1-cp312-cp312-macosx_11_0_arm64.whl#sha256=1a09758785da339a86196ebd5c0574ece1417a82370fdfdf77962f6705bf81a2
+fqdn==1.5.1
+furo @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/furo-2024.7.18-py3-none-any.whl#sha256=b192c7c1f59805494c8ed606d9375fdac6e6ba8178e747e72bc116745fb7e13f
+gast @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/gast-0.5.4-py3-none-any.whl#sha256=e080ed7c973d5e0ef56182c277b87b52fd6a5723eca641db68526d432ecf4a4d
+gmpy2 @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/gmpy2-2.2.0a1-cp312-cp312-macosx_11_0_arm64.whl#sha256=df3f8d31c26df7842dd1cd5cab0556cfe397351446972a66bc4d42e912e64cb7
+gnumake_tokenpool @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/gnumake_tokenpool-0.0.7-py3-none-any.whl#sha256=0c49578df1a76b6ff7724b99053d96f1583bd3e52fe9547587cfb6ffdb0d1fcd
+graph-tools==1.14
+h11==0.14.0
+hatchling @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/hatchling-1.25.0-py3-none-any.whl#sha256=b47948e45d4d973034584dd4cb39c14b6a70227cf287ab7ec0ad7983408a882c
+httpcore==1.0.7
+httpx==0.28.0
+idna==3.10
+imagesize @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/imagesize-1.4.1-py2.py3-none-any.whl#sha256=0d8d18d08f840c19d0ee7ca1fd82490fdc3729b7ac93f49870406ddde8ef8d8b
+iniconfig @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/iniconfig-2.0.0-py3-none-any.whl#sha256=b6a85871a79d2e3b22d2d1b94ac2824226a63c6b741c88f7ae975f18b6778374
+ipykernel==6.29.5
+ipython==8.30.0
+ipython_genutils @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/ipython_genutils-0.2.0-py2.py3-none-any.whl#sha256=47a728523b01dd4689715fff1a5381190d71a2843a7bd652d7521540c85bfd92
+ipywidgets @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/ipywidgets-8.1.1-py3-none-any.whl#sha256=f5d4cafe6df9dc74c40a5fc2342a50a05ca9ecaa35a5ad9ea7ed229e276fb7f5
+isoduration==20.11.0
+jedi==0.19.2
+Jinja2==3.1.4
+joblib==1.5.1
+json5==0.10.0
+jsonpointer==3.0.0
+jsonschema==4.23.0
+jsonschema-specifications==2024.10.1
+jupyter-events==0.10.0
+jupyter-lsp==2.2.5
+jupyter_client==8.6.3
+jupyter_core==5.7.2
+jupyter_server==2.14.2
+jupyter_server_terminals==0.5.3
+jupyterlab==4.3.2
+jupyterlab-widgets @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/jupyterlab_widgets-3.0.9-py3-none-any.whl#sha256=3cf5bdf5b897bf3bccf1c11873aa4afd776d7430200f765e0686bd352487b58d
+jupyterlab_pygments==0.3.0
+jupyterlab_server==2.27.3
+kiwisolver @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/kiwisolver-1.4.5-cp312-cp312-macosx_11_0_arm64.whl#sha256=1512a0fb6f9948c23aff45aeaff030e89db458269e372dbf99f8d4133f67ae6c
+ldpc==2.3.8
+llvmlite==0.45.1
+lrcalc @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/lrcalc-2.1-cp312-cp312-macosx_11_0_arm64.whl#sha256=ac7b76447a6545c86d54cad3146f013508c86d0f590bbbe37644202b4e168e70
+MarkupSafe==3.0.2
+matplotlib @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/matplotlib-3.8.0-cp312-cp312-macosx_11_0_arm64.whl#sha256=a89338194a3f8017a0d0a04dd3dca9cd5eb4943e7c1547c2259824114dfd34ea
+matplotlib-inline==0.1.7
+memory_allocator @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/memory_allocator-0.1.4-cp312-cp312-macosx_11_0_arm64.whl#sha256=be1ad1ccb9bff80807c295a4f2e692811095d6b975176a1e4997f35f52e63f76
+meson @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/meson-1.3.1-py3-none-any.whl#sha256=d5223ecca9564d735d36daaba2571abc6c032c8c3a7ffa0674e803ef0c7e0219
+meson-python @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/meson_python-0.15.0-py3-none-any.whl#sha256=d48a76bf97ae11e8d26b7cd0df90237537957aa4650fe8442c3a7fa1159559dc
+mistune==3.0.2
+mpmath @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/mpmath-1.3.0-py3-none-any.whl#sha256=e990b8791910bb64b835c0c310d898032299e1da84beeb0481d8a985209a7b70
+nbclient==0.10.1
+nbconvert==7.16.4
+nbformat==5.10.4
+nest-asyncio==1.6.0
+networkx @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/networkx-3.2.1-py3-none-any.whl#sha256=5253dc585318f085de68c1ad4859e21d11acca3ef591ced39484cba9783bf21a
+notebook==7.3.0
+notebook_shim==0.2.4
+numba==0.62.1
+numpy @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/numpy-1.26.3-cp312-cp312-macosx_11_0_arm64.whl#sha256=ab24eb91483b57534bf66150cbb07217538d88cd7bc5346e85111303ee8b1284
+overrides==7.7.0
+packaging==24.2
+pandas==2.3.1
+pandocfilters==1.5.1
+parmap==1.7.0
+parso==0.8.4
+pathspec @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pathspec-0.12.1-py3-none-any.whl#sha256=a0d503e138a4c123b27490a4f7beda6a01c6f288df0e4a8b79c7eb0dc7b4cc08
+perlcompat==1.1
+pexpect==4.9.0
+pGroupCohomology @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pGroupCohomology-3.3.3-cp312-cp312-macosx_11_0_arm64.whl#sha256=bfd09a97aec01d62988fc8db31f1d6e1f0834578905023fd1d561db968b1ba2e
+pickleshare @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pickleshare-0.7.5-py2.py3-none-any.whl#sha256=5a00b54d57af51a649a347bba17f45d1e9236f08bdce6b1c4b19cec3994fcea8
+pillow==11.0.0
+pkgconfig @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pkgconfig-1.5.5-py3-none-any.whl#sha256=d20023bbeb42ee6d428a0fac6e0904631f545985a10cdd71a20aa58bc47a4209
+platformdirs==4.3.6
+pluggy @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pluggy-1.5.0-py3-none-any.whl#sha256=44e1ad92c8ca002de6377e165f3e0f1be63266ab4d554740532335b9d75ea669
+ply @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/ply-3.11-py2.py3-none-any.whl#sha256=0f5b6e315ac837cdc76c011d4f0ff93158422aa0beabbe9b8afdc30df46de635
+pplpy @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pplpy-0.8.9-cp312-cp312-macosx_11_0_arm64.whl#sha256=67011ea6159d4ae30003ee50a11c59119327241b3a02a7e5760616cf6a91a2b1
+primecountpy @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/primecountpy-0.1.0-cp312-cp312-macosx_11_0_arm64.whl#sha256=e01e94da0f4d084d5a85623a4dad52726aca466fa4725f823dfb2a5f466676db
+prometheus_client==0.21.1
+prompt_toolkit==3.0.48
+psutil==6.1.0
+ptyprocess==0.7.0
+pure_eval==0.2.3
+py @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/py-1.11.0-py2.py3-none-any.whl#sha256=607c53218732647dff4acdfcd50cb62615cedf612e72d1724fb1a0cc6405b378
+pybind11 @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pybind11-2.11.1-py3-none-any.whl#sha256=4f3f6d9e57585c48dd0695a8bec8fe1d910ea753149c96d65e38c4f58ce01145
+pycosat @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pycosat-0.6.3-cp312-cp312-macosx_11_0_arm64.whl#sha256=879240e537fe3df124cb537b8ec7d44169a5ac93370e6c149140ecbe615a06f0
+pycparser==2.22
+Pygments==2.18.0
+PyMatching==2.2.2
+PyNormaliz @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/PyNormaliz-2.20-cp312-cp312-macosx_11_0_arm64.whl#sha256=51c526a297e0faac3d1d6277c21f2e01555b48dc3593b23fe0c460d7c0c80f77
+pyparsing @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pyparsing-3.1.2-py3-none-any.whl#sha256=f9db75911801ed778fe61bb643079ff86601aca99fcae6345aa67292038fb742
+pyproject-api @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pyproject_api-1.7.1-py3-none-any.whl#sha256=2dc1654062c2b27733d8fd4cdda672b22fe8741ef1dde8e3a998a9547b071eeb
+pyproject-metadata @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pyproject_metadata-0.8.0-py3-none-any.whl#sha256=ad858d448e1d3a1fb408ac5bac9ea7743e7a8bbb472f2693aaa334d2db42f526
+pyproject_hooks @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pyproject_hooks-1.1.0-py3-none-any.whl#sha256=7ceeefe9aec63a1064c18d939bdc3adf2d8aa1988a510afec15151578b232aa2
+pyrsistent @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pyrsistent-0.19.3-cp312-cp312-macosx_11_0_arm64.whl#sha256=a600f8c1ac368fd4c48c6fd22df39b6c6bdd0669fdf7f80093586c13e6ded25b
+PySingular @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/PySingular-0.9.7-cp312-cp312-macosx_11_0_arm64.whl#sha256=2f629cd5f47bb7cf578e49de2879a650cd59eb7c8b76e39aeca9cdf6f33a62c8
+Pytess==1.0.0
+pytest @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pytest-8.3.2-py3-none-any.whl#sha256=4ba08f9ae7dcf84ded419494d229b48d0903ea6407b030eaec46df5e6a73bba5
+pytest-mock @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pytest_mock-3.14.0-py3-none-any.whl#sha256=0b72c38033392a5f4621342fe11e9219ac11ec9d375f8e2a0c164539e0d70f6f
+pytest-xdist @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pytest_xdist-3.6.1-py3-none-any.whl#sha256=9ed4adfb68a016610848639bb7e02c9352d5d9f03d04809919e2dafc3be4cca7
+python-dateutil==2.9.0.post0
+python-json-logger==2.0.7
+pythran @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pythran-0.15.0-py3-none-any.whl#sha256=c5d68ef3a9e7c66648fa5e19584f12034d25dbaa35d8cedc958f5679ac19ce25
+pytz @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pytz-2023.3.post1-py3-none-any.whl#sha256=481409bffc2fa6281171217cc32a242bc223f1cca35125a43edbdb50dfeefa68
+pytz_deprecation_shim @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/pytz_deprecation_shim-0.1.0.post0-py2.py3-none-any.whl#sha256=76e92dac4fcd13cd9677c1c48bdf6e74eaef2879dff4e4a505a394b8efc1cce7
+PyYAML==6.0.2
+pyzmq==26.2.0
+referencing==0.35.1
+requests==2.32.3
+rfc3339-validator==0.1.4
+rfc3986-validator==0.1.1
+rpds-py==0.22.3
+sage-conf @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sage_conf-10.5-py3-none-any.whl#sha256=9ce5e119c6d8f01d9dc186a5eaa590a831bcf78ec09d795d5f9252b83e60d75d
+sage-docbuild @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sage_docbuild-10.5-py3-none-any.whl#sha256=930486bd27e141c6b099ae4873ee49a1fc7f4a8f29a9fe0d7740ada22981f56b
+sage-setup @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sage_setup-10.5-py3-none-any.whl#sha256=153fa5e78868c27ea79ba99e050d57ebd680d46b4916159fa68fcb71afdc3f97
+sage_numerical_backends_coin @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sage_numerical_backends_coin-10.4-cp312-cp312-macosx_11_0_arm64.whl#sha256=02ef459633e39d1f033d92dfc55bb52c84207b44ed03af5438ccc2f91c69635a
+sagemath-bliss @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sagemath_bliss-10.5-cp312-cp312-macosx_11_0_arm64.whl#sha256=7b1e01e69d52e1f3e1fee63cb723afbd8c9fa3f1681dd3fb9b81ed234354c115
+sagemath-standard @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sagemath_standard-10.5-cp312-cp312-macosx_11_0_arm64.whl#sha256=d00e2322cba5aed61b520b79aa74a9a49731a00ee8ded085df0a81cc7cd8fa86
+sagetex @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sagetex-3.6.1-py3-none-any.whl#sha256=dba3d56b960343d614363b6f6f91548a73b9607533bd7940256ca81764e2033c
+scipy @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/scipy-1.12.0-cp312-cp312-macosx_11_0_arm64.whl#sha256=ab5cf4d1d59eb4a3ec5be49b41ffdf5392b587ebc13f79f9a11280ccb0e47fca
+Send2Trash==1.8.3
+setuptools==75.6.0
+setuptools-scm @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/setuptools_scm-8.1.0-py3-none-any.whl#sha256=897a3226a6fd4a6eb2f068745e49733261a21f70b1bb28fce0339feb978d9af3
+sinter==1.15.0
+six==1.16.0
+sniffio==1.3.1
+snowballstemmer @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/snowballstemmer-2.2.0-py2.py3-none-any.whl#sha256=d52532d209b9c55682d82c4c7af8dc7b30eeec3fd9be2beb77136d1c967a3f5b
+soupsieve==2.6
+Sphinx @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sphinx-7.4.7-py3-none-any.whl#sha256=c2419e2135d11f1951cd994d6eb18a1835bd8fdd8429f9ca375dc1f3281bd239
+sphinx-basic-ng @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sphinx_basic_ng-1.0.0b2-py3-none-any.whl#sha256=eb09aedbabfb650607e9b4b68c9d240b90b1e1be221d6ad71d61c52e29f7932b
+sphinx-copybutton @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sphinx_copybutton-0.5.2-py3-none-any.whl#sha256=fb543fd386d917746c9a2c50360c7905b605726b9355cd26e9974857afeae06e
+sphinx_inline_tabs @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sphinx_inline_tabs-2023.4.21-py3-none-any.whl#sha256=06809ac613f7c48ddd6e2fa588413e3fe92cff2397b56e2ccf0b0218f9ef6a78
+sphinxcontrib-applehelp @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sphinxcontrib_applehelp-1.0.8-py3-none-any.whl#sha256=cb61eb0ec1b61f349e5cc36b2028e9e7ca765be05e49641c97241274753067b4
+sphinxcontrib-devhelp @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sphinxcontrib_devhelp-1.0.6-py3-none-any.whl#sha256=6485d09629944511c893fa11355bda18b742b83a2b181f9a009f7e500595c90f
+sphinxcontrib-htmlhelp @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sphinxcontrib_htmlhelp-2.0.5-py3-none-any.whl#sha256=393f04f112b4d2f53d93448d4bce35842f62b307ccdc549ec1585e950bc35e04
+sphinxcontrib-jsmath @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sphinxcontrib_jsmath-1.0.1-py2.py3-none-any.whl#sha256=2ec2eaebfb78f3f2078e73666b1415417a116cc848b72e5172e596c871103178
+sphinxcontrib-qthelp @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sphinxcontrib_qthelp-1.0.7-py3-none-any.whl#sha256=e2ae3b5c492d58fcbd73281fbd27e34b8393ec34a073c792642cd8e529288182
+sphinxcontrib-serializinghtml @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sphinxcontrib_serializinghtml-1.1.10-py3-none-any.whl#sha256=326369b8df80a7d2d8d7f99aa5ac577f51ea51556ed974e7716cfd4fca3f6cb7
+sphinxcontrib-websupport @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sphinxcontrib_websupport-1.2.7-py3-none-any.whl#sha256=2dc179d7f821ebd54f31f93c894ca52435ebc5364e4e4dfb0da834ac119d51fd
+stack-data==0.6.3
+stim==1.15.0
+symengine @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/symengine-0.11.0-cp312-cp312-macosx_11_0_arm64.whl#sha256=c8400dbb0503cec377df49037d66a233a8ca07d19a61b98c784ef41b76c1603a
+sympy @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/sympy-1.13.2-py3-none-any.whl#sha256=c51d75517712f1aed280d4ce58506a4a88d635d6b5dd48b39102a7ae1f3fcfe9
+tbdump==1.4
+terminado==0.18.1
+tinycss2==1.4.0
+tomli @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/tomli-2.0.1-py3-none-any.whl#sha256=939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc
+tornado==6.4.2
+tox @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/tox-4.11.1-py3-none-any.whl#sha256=da761b4a57ee2b92b5ce39f48ff723fc42d185bf2af508effb683214efa662ea
+tqdm==4.67.1
+traitlets==5.14.3
+trove-classifiers @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/trove_classifiers-2024.7.2-py3-none-any.whl#sha256=ccc57a33717644df4daca018e7ec3ef57a835c48e96a1e71fc07eb7edac67af6
+types-python-dateutil==2.9.0.20241003
+tzdata @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/tzdata-2023.3-py2.py3-none-any.whl#sha256=7e65763eef3120314099b6939b5546db7adce1e7d6f2e179e3df563c70511eda
+tzlocal @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/tzlocal-5.0.1-py3-none-any.whl#sha256=ddc0e828ceec4ad497410c090a0648a59a77cf9cbfd7be1d35b0f0d7f50c40cd
+uri-template==1.3.0
+urllib3==2.2.3
+virtualenv @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/virtualenv-20.26.2-py3-none-any.whl#sha256=a624db5e94f01ad993d476b9ee5346fdf7b9de43ccaee0e0197012dc838a0e9b
+wcwidth==0.2.13
+webcolors==24.11.1
+webencodings==0.5.1
+websocket-client==1.8.0
+wheel @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/wheel-0.44.0-py3-none-any.whl#sha256=2376a90c98cc337d18623527a97c31797bd02bad0033d41547043a1cbfbe448f
+widgetsnbextension @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/widgetsnbextension-4.0.9-py3-none-any.whl#sha256=91452ca8445beb805792f206e560c1769284267a30ceb1cec9f5bcc887d15175
+zipp @ file:///private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/var/lib/sage/wheels/zipp-3.19.0-py3-none-any.whl#sha256=96dc6ad62f1441bcaccef23b274ec471518daf4fbbc580341204936a5a3dddec
