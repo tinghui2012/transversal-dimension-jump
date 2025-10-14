@@ -1,6 +1,5 @@
 # Transversal dimension jump for product qLDPC codes
-This repo contains the code for simulations in "Transversal dimension jump for product qLDPC codes"
-Preprint: https://arxiv.org/abs/2510.07269
+This repo contains the code for simulations in "Transversal dimension jump for product qLDPC codes" -- https://arxiv.org/abs/2510.07269
 
 Includes:
 - constructions of product qLDPC codes, including HGP and lifted product
